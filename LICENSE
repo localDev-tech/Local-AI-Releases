@@ -1,0 +1,55 @@
+Local AI
+
+Copyright (c) 2026 localDev-tech. All rights reserved.
+
+This software and its source code are proprietary and confidential. No licence
+is granted, expressly or by implication, other than the limited permission set
+out below.
+
+PERMITTED
+
+  You may install and use the officially distributed builds of Local AI on
+  computers you own or control, for any purpose, personal or commercial, at no
+  charge.
+
+NOT PERMITTED
+
+  You may not copy, modify, adapt, translate, or create derivative works from
+  this software or its source code.
+
+  You may not reverse engineer, decompile, or disassemble the software, nor
+  extract, republish, or reuse its source code, in whole or in part, except to
+  the extent that such a restriction is prohibited by applicable law.
+
+  You may not redistribute, sell, sublicense, rent, lease, or host the software
+  or any part of it, whether modified or unmodified.
+
+  You may not remove or alter this notice, the copyright notices, or the
+  third-party notices distributed with the software.
+
+THIRD-PARTY COMPONENTS
+
+  This software includes third-party components licensed separately from it.
+  Those components remain governed by their own licences, which are reproduced
+  in THIRD-PARTY-NOTICES.md and, for Electron and Chromium, in the files
+  distributed alongside the application. Nothing in this licence restricts any
+  right you hold under those licences with respect to those components.
+
+MODELS AND YOUR DATA
+
+  Local AI runs AI models supplied by you through Ollama. Those models are
+  licensed by their own authors, and this licence says nothing about them. Your
+  conversations are stored on your own computer and are not transmitted to the
+  author of this software.
+
+NO WARRANTY
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+For permissions beyond this licence, contact the copyright holder through
+https://github.com/localDev-tech.

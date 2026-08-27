@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="286" height="56" viewBox="0 0 286 56" role="img" aria-label="Download Local AI">
+  <title>Download Local AI</title>
+  <!--
+    Rendered by the viewer's browser inside an <img>, so the font stack resolves
+    on their machine rather than on GitHub's servers. Kept to one flat colour so
+    it reads the same against the light and dark README backgrounds.
+  -->
+  <rect x="1" y="1" width="284" height="54" rx="27" fill="#c15f3c" />
+  <g transform="translate(42 18)" fill="none" stroke="#ffffff" stroke-width="2.2"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 0v12" />
+    <path d="M4 8l5 5 5-5" />
+    <path d="M0 19h18" />
+  </g>
+  <text x="80" y="34" fill="#ffffff" font-size="18" font-weight="600"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Helvetica, Arial, sans-serif">Download Local AI</text>
+</svg>

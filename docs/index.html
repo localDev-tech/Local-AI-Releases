@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Download Local AI</title>
+    <meta
+      name="description"
+      content="Local AI — chat with AI models running on your own machine. Free to use, for Windows, macOS and Linux."
+    />
+    <link rel="icon" href="icon.png" />
+    <style>
+      /*
+       * Deliberately one file with no dependencies: this page is the front door
+       * for an app whose whole point is not needing anything else, and it has to
+       * render before a single request to anywhere.
+       */
+      :root {
+        --bg: #f9f8f6;
+        --surface: #ffffff;
+        --hover: #f0eee9;
+        --accent: #c15f3c;
+        --accent-hover: #a94e2e;
+        --text: #1f1e1d;
+        --muted: #6b6a67;
+        --faint: #92908c;
+        --border: #e5e2dc;
+        --border-strong: #d6d2ca;
+        --on-accent: #ffffff;
+        --shadow: 0 1px 2px rgba(31, 30, 29, 0.06);
+        --shadow-lg: 0 8px 28px rgba(31, 30, 29, 0.1);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #262624;
+          --surface: #303030;
+          --hover: #3a3937;
+          --accent: #d97757;
+          --accent-hover: #e08a6e;
+          --text: #f3f2ef;
+          --muted: #b3b0aa;
+          --faint: #8b8880;
+          --border: #3a3937;
+          --border-strong: #4a4845;
+          --on-accent: #1f1e1d;
+          --shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+          --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.45);
+        }
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0 20px 80px;
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI Variable Text', 'Segoe UI',
+          system-ui, 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      /* ── Masthead ── */
+
+      header {
+        padding: 72px 0 40px;
+        text-align: center;
+      }
+
+      .mark {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 22px;
+        border-radius: 16px;
+        background: #000;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        box-shadow: var(--shadow-lg);
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: 40px;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+      }
+
+      .tagline {
+        margin: 0 auto;
+        max-width: 30em;
+        color: var(--muted);
+        font-size: 17px;
+      }
+
+      /* ── The recommended download ── */
+
+      .primary-card {
+        margin: 36px 0 14px;
+        padding: 26px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--surface);
+        box-shadow: var(--shadow-lg);
+        text-align: center;
+      }
+
+      .detected {
+        margin: 0 0 16px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 13px 26px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        background: var(--accent);
+        color: var(--on-accent);
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 120ms ease;
+      }
+
+      .btn:hover {
+        background: var(--accent-hover);
+      }
+
+      /* Two buttons only when a Mac will not say which chip it has. */
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .btn svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .meta {
+        margin: 14px 0 0;
+        color: var(--faint);
+        font-size: 13px;
+      }
+
+      /* ── Every platform ── */
+
+      h2 {
+        margin: 48px 0 6px;
+        font-size: 20px;
+        letter-spacing: -0.01em;
+      }
+
+      .section-note {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .platform {
+        margin-bottom: 14px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--surface);
+        overflow: hidden;
+      }
+
+      .platform-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .platform-head svg {
+        width: 20px;
+        height: 20px;
+        flex: none;
+        color: var(--muted);
+      }
+
+      .platform-name {
+        font-weight: 600;
+      }
+
+      .platform-req {
+        margin-left: auto;
+        color: var(--faint);
+        font-size: 13px;
+      }
+
+      .asset {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 18px;
+        border-top: 1px solid var(--border);
+        color: inherit;
+        text-decoration: none;
+        transition: background 120ms ease;
+      }
+
+      .asset:first-of-type {
+        border-top: none;
+      }
+
+      .asset:hover {
+        background: var(--hover);
+      }
+
+      .asset-main {
+        min-width: 0;
+      }
+
+      .asset-title {
+        font-size: 15px;
+        font-weight: 500;
+      }
+
+      .asset-sub {
+        color: var(--faint);
+        font-size: 13px;
+      }
+
+      .asset-size {
+        margin-left: auto;
+        flex: none;
+        color: var(--faint);
+        font-size: 13px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .recommended {
+        display: inline-block;
+        margin-left: 8px;
+        padding: 1px 8px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: var(--on-accent);
+        font-size: 11.5px;
+        font-weight: 600;
+        vertical-align: 1px;
+      }
+
+      /* ── Notes ── */
+
+      .notes {
+        margin-top: 44px;
+        padding: 20px 22px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: transparent;
+      }
+
+      .notes h3 {
+        margin: 0 0 10px;
+        font-size: 15px;
+      }
+
+      .notes p {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .notes p:last-child {
+        margin-bottom: 0;
+      }
+
+      code {
+        padding: 1px 6px;
+        border-radius: 5px;
+        background: var(--hover);
+        font-family: ui-monospace, 'Cascadia Code', Consolas, 'SFMono-Regular', Menlo, monospace;
+        font-size: 0.88em;
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      footer {
+        margin-top: 48px;
+        color: var(--faint);
+        font-size: 13.5px;
+        text-align: center;
+      }
+
+      footer a {
+        margin: 0 8px;
+      }
+
+      .state {
+        padding: 26px;
+        border: 1px dashed var(--border-strong);
+        border-radius: 12px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="mark" aria-hidden="true">AI</div>
+        <h1>Local AI</h1>
+        <p class="tagline">
+          Chat with AI models running on your own computer. No account, no subscription, and
+          nothing leaves the machine unless you turn on web search.
+        </p>
+      </header>
+
+      <!-- Filled in once the latest release has been read from GitHub. -->
+      <div class="primary-card" id="primary">
+        <div class="state" id="loading">Finding the latest version…</div>
+      </div>
+
+      <h2>All downloads</h2>
+      <p class="section-note" id="allNote">Every platform, from the same release.</p>
+      <div id="all"></div>
+
+      <div class="notes">
+        <h3>Before you start</h3>
+        <p>
+          Local AI talks to <a href="https://ollama.com/download">Ollama</a>, which is what
+          actually runs the models. Install that first — the app starts it for you afterwards,
+          and can download models from inside its own window.
+        </p>
+        <p>
+          <strong>Windows</strong> will show a blue “Windows protected your PC” box, because the
+          app is not code-signed yet. Click <em>More info</em> → <em>Run anyway</em>.
+        </p>
+        <p>
+          <strong>macOS</strong> will say the app “cannot be opened because the developer cannot
+          be verified”, for the same reason. Right-click the app → <em>Open</em> → <em>Open</em>,
+          or allow it under System Settings → Privacy &amp; Security.
+        </p>
+        <p>
+          <strong>Linux:</strong> the AppImage needs to be made executable before it will run —
+          <code>chmod +x Local-AI-*.AppImage</code> — and it is the version that updates itself.
+          The <code>.deb</code> is installed and updated through your package manager instead.
+        </p>
+      </div>
+
+      <footer>
+        <a href="https://github.com/localDev-tech/Local-AI-Releases/releases">All releases</a> ·
+        <a href="https://github.com/localDev-tech/Local-AI-Releases/issues">Report a problem</a> ·
+        <a href="https://www.patreon.com/cw/LocalAIOfficial">Patreon</a>
+      </footer>
+    </main>
+
+    <script>
+      const REPO = 'localDev-tech/Local-AI-Releases';
+      const RELEASES = `https://github.com/${REPO}/releases`;
+
+      const ICONS = {
+        windows:
+          '<path d="M3 5.5 10 4.5v7H3zM11.5 4.3 21 3v8.5h-9.5zM3 12.5h7v7L3 18.5zM11.5 12.5H21V21l-9.5-1.3z" fill="currentColor" stroke="none"/>',
+        macos:
+          '<path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.2 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.6ZM14.2 5.9c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2-.5 2.7-1.3Z" fill="currentColor" stroke="none"/>',
+        linux:
+          '<path d="M12 2c2.2 0 3.4 1.8 3.4 4.3 0 1.6-.3 2.3.3 3.4.8 1.4 2.6 3.2 2.6 5.6 0 1-.3 1.7-.1 2.4.2.7 1 1 1 1.7 0 .9-1.3 1.4-3 1.6-1.4.2-2.1.8-4.2.8s-2.8-.6-4.2-.8c-1.7-.2-3-.7-3-1.6 0-.7.8-1 1-1.7.2-.7-.1-1.4-.1-2.4 0-2.4 1.8-4.2 2.6-5.6.6-1.1.3-1.8.3-3.4C8.6 3.8 9.8 2 12 2Z"/><circle cx="10.2" cy="7.4" r=".9" fill="currentColor" stroke="none"/><circle cx="13.8" cy="7.4" r=".9" fill="currentColor" stroke="none"/><path d="M10.6 10.4c.5.5 2.3.5 2.8 0"/>',
+        download: '<path d="M12 3v12M7 10l5 5 5-5M4 20h16"/>'
+      };
+
+      const icon = (name) =>
+        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ICONS[name]}</svg>`;
+
+      const megabytes = (bytes) =>
+        bytes >= 1024 * 1024 * 1024
+          ? `${(bytes / 1024 ** 3).toFixed(2)} GB`
+          : `${Math.round(bytes / 1024 / 1024)} MB`;
+
+      const escapeHtml = (value) =>
+        String(value).replace(
+          /[&<>"']/g,
+          (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]
+        );
+
+      /* ── Which platform is this visitor on ── */
+
+      function detect() {
+        // Chromium freezes the user-agent string but reports the truth here, so
+        // this is asked first and the string is only a fallback — for Safari
+        // and Firefox, which do not implement it.
+        const hint = navigator.userAgentData?.platform;
+        if (hint) {
+          if (/Windows/i.test(hint)) return 'windows';
+          if (/macOS|iOS/i.test(hint)) return 'macos';
+          if (/Linux|Android|Chrome OS/i.test(hint)) return 'linux';
+        }
+
+        const haystack = `${navigator.userAgent} ${navigator.platform || ''}`;
+        if (/Win/i.test(haystack)) return 'windows';
+        if (/Mac|iPhone|iPad/i.test(haystack)) return 'macos';
+        if (/Linux|X11|CrOS/i.test(haystack)) return 'linux';
+        return null;
+      }
+
+      /**
+       * Apple silicon versus Intel, where the browser will say. Chromium answers
+       * this; Safari does not, and there is no reliable way to infer it, so an
+       * unknown answer means both Mac builds are offered side by side rather
+       * than one being guessed at.
+       */
+      async function macArchitecture() {
+        try {
+          const values = await navigator.userAgentData?.getHighEntropyValues?.(['architecture']);
+          if (values?.architecture === 'arm') return 'arm64';
+          if (values?.architecture === 'x86') return 'x64';
+        } catch {
+          /* fall through to unknown */
+        }
+        return null;
+      }
+
+      /* ── Sorting the release's files into something a person can read ── */
+
+      function classify(assets) {
+        const find = (test) => assets.filter((a) => test(a.name));
+        const dmgs = find((n) => /\.dmg$/i.test(n));
+
+        return {
+          windows: [
+            ...find((n) => /setup.*\.exe$/i.test(n)).map((a) => ({
+              asset: a,
+              title: 'Windows installer',
+              sub: '64-bit · updates itself',
+              best: true
+            })),
+            ...find((n) => /portable.*\.exe$/i.test(n)).map((a) => ({
+              asset: a,
+              title: 'Windows portable',
+              sub: 'Runs from anywhere, installs nothing'
+            }))
+          ],
+          macos: dmgs.map((a) => ({
+            asset: a,
+            title: /arm64|aarch64/i.test(a.name) ? 'macOS · Apple silicon' : 'macOS · Intel',
+            sub: /arm64|aarch64/i.test(a.name) ? 'M1 and newer' : 'Pre-2020 Macs',
+            arch: /arm64|aarch64/i.test(a.name) ? 'arm64' : 'x64',
+            best: /arm64|aarch64/i.test(a.name)
+          })),
+          linux: [
+            ...find((n) => /\.appimage$/i.test(n)).map((a) => ({
+              asset: a,
+              title: 'Linux AppImage',
+              sub: 'Any distribution · updates itself',
+              best: true
+            })),
+            ...find((n) => /\.deb$/i.test(n)).map((a) => ({
+              asset: a,
+              title: 'Linux .deb',
+              sub: 'Debian, Ubuntu, Mint'
+            }))
+          ]
+        };
+      }
+
+      const LABELS = {
+        windows: { name: 'Windows', req: 'Windows 10 or later' },
+        macos: { name: 'macOS', req: 'macOS 11 or later' },
+        linux: { name: 'Linux', req: '64-bit' }
+      };
+
+      function renderPlatform(key, entries) {
+        if (!entries.length) return '';
+
+        const rows = entries
+          .map(
+            (entry) => `
+              <a class="asset" href="${escapeHtml(entry.asset.browser_download_url)}">
+                <span class="asset-main">
+                  <span class="asset-title">${escapeHtml(entry.title)}</span>
+                  <span class="asset-sub">${escapeHtml(entry.sub)}</span>
+                </span>
+                <span class="asset-size">${megabytes(entry.asset.size)}</span>
+              </a>`
+          )
+          .join('');
+
+        return `
+          <section class="platform">
+            <div class="platform-head">
+              ${icon(key)}
+              <span class="platform-name">${LABELS[key].name}</span>
+              <span class="platform-req">${LABELS[key].req}</span>
+            </div>
+            ${rows}
+          </section>`;
+      }
+
+      /**
+       * `entries` is normally one download. It is two only for a Mac whose
+       * browser will not say which chip it has — in which case both are offered
+       * as buttons rather than falling back to "pick something below", which
+       * would throw away the one thing that was worked out.
+       */
+      function renderPrimary(version, entries, platformKey) {
+        const primary = document.getElementById('primary');
+
+        if (!entries.length) {
+          primary.innerHTML = `
+            <p class="detected">Pick your platform below.</p>
+            <a class="btn" href="${RELEASES}">${icon('download')} See all downloads</a>
+            <p class="meta">Version ${escapeHtml(version)}</p>`;
+          return;
+        }
+
+        const platform = LABELS[platformKey].name;
+        const split = entries.length > 1;
+
+        const buttons = entries
+          .map(
+            (entry) => `
+              <a class="btn" href="${escapeHtml(entry.asset.browser_download_url)}">
+                ${icon('download')}
+                ${escapeHtml(split ? entry.title.replace('macOS · ', '') : `Download for ${platform}`)}
+              </a>`
+          )
+          .join('');
+
+        const meta = split
+          ? 'your browser will not say which chip this Mac has. Apple silicon is an M1 or newer; Intel is anything before that.'
+          : `${escapeHtml(entries[0].title)} · ${megabytes(entries[0].asset.size)}`;
+
+        primary.innerHTML = `
+          <p class="detected">Looks like you are on ${platform}.</p>
+          <div class="btn-row">${buttons}</div>
+          <p class="meta">Version ${escapeHtml(version)} · ${meta}</p>`;
+      }
+
+      function renderUnavailable(message) {
+        document.getElementById('primary').innerHTML = `
+          <div class="state">
+            ${escapeHtml(message)}<br />
+            <a href="${RELEASES}">Check the releases page</a>
+          </div>`;
+        document.getElementById('allNote').textContent =
+          'Downloads appear here as soon as a version is published.';
+      }
+
+      /* ── Go ── */
+
+      (async () => {
+        let release;
+        try {
+          const res = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, {
+            headers: { Accept: 'application/vnd.github+json' }
+          });
+          if (res.status === 404) {
+            renderUnavailable('No version has been published yet.');
+            return;
+          }
+          if (!res.ok) throw new Error(`GitHub returned ${res.status}`);
+          release = await res.json();
+        } catch {
+          renderUnavailable('Could not reach GitHub to find the latest version.');
+          return;
+        }
+
+        const version = String(release.tag_name || '').replace(/^v/, '');
+        const groups = classify(release.assets || []);
+
+        document.getElementById('all').innerHTML = Object.keys(LABELS)
+          .map((key) => renderPlatform(key, groups[key]))
+          .join('');
+
+        const detected = detect();
+        let best = [];
+
+        if (detected && groups[detected]?.length) {
+          if (detected === 'macos') {
+            const arch = await macArchitecture();
+            const match = arch ? groups.macos.find((entry) => entry.arch === arch) : null;
+            // Unknown chip: offer both, labelled, rather than guessing.
+            best = match ? [match] : groups.macos;
+          } else {
+            best = [groups[detected].find((entry) => entry.best) || groups[detected][0]];
+          }
+        }
+
+        renderPrimary(version, best, detected);
+      })();
+    </script>
+  </body>
+</html>
