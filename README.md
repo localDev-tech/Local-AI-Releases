@@ -7,11 +7,14 @@
 **Chat with AI models running on your own computer.**
 No account, no subscription, and nothing leaves the machine unless you turn on web search.
 
-<a href="https://github.com/localDev-tech/Local-AI-Releases/releases/latest">
+<a href="https://localdev-tech.github.io/Local-AI-Releases/">
   <img src="download-button.svg" alt="Download Local AI" width="286" height="56" />
 </a>
 
-Windows · macOS · Linux — [pick your platform automatically](https://localdev-tech.github.io/Local-AI-Releases/)
+**Windows · macOS · Linux.** One link for all three — the page works out which
+system you are on and hands you the right installer.
+
+Would rather pick yourself? [Every download is here.](https://github.com/localDev-tech/Local-AI-Releases/releases/latest)
 
 </div>
 
@@ -42,6 +45,9 @@ the models; Local AI starts it for you afterwards and can pull models from insid
 its own window.
 
 ## Which file do I want?
+
+The [download page](https://localdev-tech.github.io/Local-AI-Releases/) answers
+this for you. If you are choosing by hand:
 
 | Platform | File | Notes |
 | --- | --- | --- |
