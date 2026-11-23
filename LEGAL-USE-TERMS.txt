@@ -1,0 +1,21 @@
+LOCAL AI — SOFTWARE LICENCE AND ACCEPTABLE USE TERMS
+Version 2026-11-23
+
+Please read these terms before using Local AI. By typing your name and selecting “I agree and sign”, you indicate that you have read and agree to these terms. If you do not agree, close the app. A copy of your acceptance is saved on this computer.
+
+1. Licence. localDev-tech grants you a limited, non-exclusive, revocable licence to use officially distributed builds of Local AI, subject to these terms and the restrictions in the accompanying LICENSE. Ollama and AI models are separate products governed by their own terms and licences.
+
+2. Your use. You choose which models to download and how to use them. You are responsible for your prompts, outputs, files, actions performed with computer tools, and compliance with applicable law and third-party rights. You must not use Local AI or any model, including an “abliterated” or otherwise modified model, to commit, facilitate, or instruct others to commit unlawful acts. A model's lack of safeguards does not make an unlawful use permitted.
+
+3. Model outputs and tools. AI output can be inaccurate, unsafe, or unlawful. Review it before relying on it or sharing it. If you enable computer or remote access, review permissions and commands carefully. localDev-tech does not create, control, or endorse third-party models or your use of them.
+
+4. No transfer of responsibility. You remain responsible for your own unlawful or harmful conduct. Nothing in these terms prevents a person or authority from bringing a claim against localDev-tech or excuses localDev-tech from any responsibility imposed by law.
+
+5. Warranties and liability. To the extent permitted by applicable law, Local AI is provided “as is”, without warranties, and localDev-tech limits liability for losses arising from use of the software. Nothing in these terms excludes liability that cannot lawfully be excluded, including liability for death or personal injury caused by negligence where applicable, fraud, or statutory consumer rights.
+
+6. Acceptance record. The app stores your typed name, acceptance time, app version, these terms' SHA-256 hash, and a unique receipt identifier in a file on this computer. The receipt hash is an integrity check, not proof of your real-world identity or an independently certified digital signature. The app checks the record on each launch and asks again if it is absent, invalid, or for a different version of these terms. You may retain a copy of these terms and the record.
+
+7. Changes. A material change to these terms requires a new acceptance before use of the updated app. Your rights under mandatory local law remain unaffected.
+
+Publisher: localDev-tech
+Contact: https://github.com/localDev-tech/Local-AI-Releases/issues

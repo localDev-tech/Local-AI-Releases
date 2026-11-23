@@ -40,9 +40,10 @@ are never sent anywhere.
 
 ## Before you install
 
-**Install [Ollama](https://ollama.com/download) first.** It is what actually runs
-the models; Local AI starts it for you afterwards and can pull models from inside
-its own window.
+The Windows setup installer downloads and installs [Ollama](https://ollama.com/download)
+if it is missing. An internet connection is needed for that step and to download
+models. Portable, macOS and Linux builds still require Ollama to be installed
+separately. Local AI can pull models from inside its own window.
 
 ## Which file do I want?
 
@@ -93,7 +94,8 @@ Both are linked at the bottom of **Personalise** inside the app.
 **Proprietary. All rights reserved.** See [LICENSE](LICENSE).
 
 Local AI is free to install and use, on as many machines as you like, for
-anything you like. What is not granted is the right to copy, modify, redistribute
+lawful purposes after accepting [the legal use terms](LEGAL-USE-TERMS.txt) on
+first launch. What is not granted is the right to copy, modify, redistribute
 or republish it or its source.
 
 This repository holds the downloads only; the source is not published.

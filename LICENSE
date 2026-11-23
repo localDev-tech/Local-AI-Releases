@@ -9,8 +9,9 @@ out below.
 PERMITTED
 
   You may install and use the officially distributed builds of Local AI on
-  computers you own or control, for any purpose, personal or commercial, at no
-  charge.
+  computers you own or control, for lawful personal or commercial purposes, at
+  no charge, subject to the Software Licence and Acceptable Use Terms presented
+  on first launch (LEGAL-USE-TERMS.txt).
 
 NOT PERMITTED
 
@@ -45,11 +46,10 @@ MODELS AND YOUR DATA
 NO WARRANTY
 
   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  IMPLIED, TO THE EXTENT PERMITTED BY APPLICABLE LAW. LIABILITY IS LIMITED ONLY
+  TO THE EXTENT PERMITTED BY APPLICABLE LAW. NOTHING IN THIS LICENCE EXCLUDES
+  LIABILITY THAT CANNOT LAWFULLY BE EXCLUDED OR RESTRICTS MANDATORY CONSUMER
+  RIGHTS.
 
 For permissions beyond this licence, contact the copyright holder through
 https://github.com/localDev-tech.
